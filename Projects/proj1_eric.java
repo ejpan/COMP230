@@ -20,18 +20,23 @@ public class proj1_eric {
         int key_length = key_split.length;
         int key_counter = 0;
         char[] message_char = message.toCharArray();
-        for (int message_counter = 0; message_counter <= message_split.length; message_counter++){ //Why can't I do char letter??
-            //System.out.println(letter);
-            char ch = message_char[message_counter];
-            int ascii_ch = ch;
-            ascii_ch += key_counter;
-            char converted_ch = (char) ascii_ch;
-            message_char[message_counter] = converted_ch;
-            //System.out.print("Ascii value: " + message_char[message_counter]);
+
+        char ch = message.charAt(0);
+        System.out.println(ch+3);
+
+
+        // for (int message_counter = 0; message_counter <= message_split.length; message_counter++){ //Why can't I do char letter??
+        //     //System.out.println(letter);
+        //     char ch = message_char[message_counter];
+        //     int ascii_ch = ch;
+        //     ascii_ch += key_counter;
+        //     char converted_ch = (char) ascii_ch;
+        //     message_char[message_counter] = converted_ch;
+        //     //System.out.print("Ascii value: " + message_char[message_counter]);
         
-        }
+        // }
         
-        System.out.println(toString(message_char));    
+        // // System.out.println(toString(message_char));    
             
         
         
