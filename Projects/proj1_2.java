@@ -15,7 +15,7 @@ public class proj1_2
             String orig_message = kb.nextLine();
             System.out.println("");
 
-            int[] keys_int = new int[keys_str.length];
+            int[] keys_int = new int[keys_str.length]; // Do I need to declare a new array each time when switching from String to int array?
             for(int i = 0; i < keys_str.length; i++)
             {
                 keys_int[i] = Integer.parseInt(keys_str[i]);

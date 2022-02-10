@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class project1 {
+public class proj1_eric {
     public static void main(String[] args){
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter the individual key values (positive or negative"  
