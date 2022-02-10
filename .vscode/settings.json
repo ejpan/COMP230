@@ -1,6 +1,7 @@
 {
     "java.project.sourcePaths": [
+        "Projects",
         "Labs/Lab 2",
-        "Projects"
+        ""
     ]
 }
