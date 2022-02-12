@@ -1,8 +1,8 @@
-//A Caesar cipher program that takes a sequence of individual key values and a line of string to be
-//encoded by changing each letter in the line of string in the order of the individual key values
-//using the ASCII character number system.
-// Eric Pan & Gabe Seidl
-// February 10,2022
+/*A Caesar cipher program that takes a sequence of individual key values and a line of string to be
+encoded by changing each letter in the line of string in the order of the individual key values
+using the ASCII character number system.
+Eric Pan & Gabe Seidl
+February 10,2022 */
 
 import java.util.Scanner;
 public class proj1_2
@@ -10,15 +10,15 @@ public class proj1_2
     public static void main(String[] args) 
     {
         boolean keep_going = true;
-        Scanner kb = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
         while(keep_going)
         {
             System.out.println("Enter the individual key values positive or negative integers, one after another in the same line with a blank between two values): ");
-            String keys = kb.nextLine();
+            String keys = input.nextLine();
             System.out.println("");
             String[] keys_str = keys.split("\\s+");
             System.out.println("Enter a string to be encoded: ");
-            String orig_message = kb.nextLine();
+            String orig_message = input.nextLine();
             System.out.println("");
 
             int[] keys_int = new int[keys_str.length]; // Do I need to declare a new array each time when switching from String to int array? What if we don't know the length?
@@ -31,7 +31,7 @@ public class proj1_2
             for(int ch = 0; ch < orig_message.length(); ch++)
             {
                 char new_char = orig_message.charAt(ch);
-                new_char = (char)(new_char + keys_int[ch % (keys_int.length)]); // (char) converts the int to unicode
+                new_char = (char)(new_char + keys_int[ch % (keys_int.length)]); 
                 encoded_message += new_char; 
             }
 
@@ -46,13 +46,13 @@ public class proj1_2
             System.out.println("The decoded message: \n" + decoded_message + "\n");
 
             System.out.println("Do you want to run the program again? (y for yes, n for no): ");
-            String answer = kb.nextLine();
+            String answer = input.nextLine();
             if(answer.toLowerCase().equals("n"))
             {
                 keep_going = false;
             }
         }
-        kb.close();
+        input.close();
         
     }
 }
