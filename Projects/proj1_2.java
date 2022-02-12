@@ -21,7 +21,7 @@ public class proj1_2
             String orig_message = input.nextLine();
             System.out.println("");
 
-            int[] keys_int = new int[keys_str.length]; // Do I need to declare a new array each time when switching from String to int array? What if we don't know the length?
+            int[] keys_int = new int[keys_str.length]; 
             for(int key = 0; key < keys_str.length; key++)
             {
                 keys_int[key] = Integer.parseInt(keys_str[key]);
