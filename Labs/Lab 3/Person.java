@@ -47,7 +47,8 @@ public class Person
         // boolean age = (this.Age == p.getAge());
         // boolean income = (this.Income == p.getIncome());
         // return (age && name && income);
-        return (this == p);
+        Person new_p = (Person)p;
+        return ((this.Name.equals(new_p.Name)) && (this.Age == new_p.Age) && (this.Income == new_p.Income));
     }
 }   
 
