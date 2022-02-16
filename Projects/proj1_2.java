@@ -31,14 +31,14 @@ public class proj1_2
             for(int ch = 0; ch < orig_message.length(); ch++)
             {
                 char new_char = orig_message.charAt(ch);
-                new_char = (char)(new_char + keys_int[ch % (keys_int.length)]); 
+                new_char = (char)(new_char + (keys_int[ch % (keys_int.length)] % 95)); 
                 encoded_message += new_char; 
             }
 
             for(int ch = 0; ch < encoded_message.length(); ch++)
             {
                 char new_char = encoded_message.charAt(ch);
-                new_char = (char)(new_char - keys_int[ch % (keys_int.length)]);
+                new_char = (char)(new_char - (keys_int[ch % (keys_int.length)] % 95));
                 decoded_message += new_char;
             }
             System.out.println("The encoded message: \n" + encoded_message);
