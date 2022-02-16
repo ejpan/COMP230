@@ -6,16 +6,16 @@ public class Person
 
     public Person() 
     {
-        String Name = "";
-        int Age = 0;
-        double Income = 0;
+        Name = "";
+        Age = 0;
+        Income = 0;
 
     }
     public Person(String n, int a, double i)
     {
-        String Name = n;
-        int Age = a;
-        double Income = i;
+        Name = n;
+        Age = a;
+        Income = i;
     }
     public String getName()
     {
@@ -43,7 +43,11 @@ public class Person
     }
     public boolean equals(Object p)
     {
-        return (Name = p.getName()) && (Age = p.getName()) && (Income = p.getIncome()) );
+        // boolean name = this.Name.equals(p.getName());
+        // boolean age = (this.Age == p.getAge());
+        // boolean income = (this.Income == p.getIncome());
+        // return (age && name && income);
+        return (this == p);
     }
 }   
 
