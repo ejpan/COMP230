@@ -48,7 +48,13 @@ public class Person
         // boolean income = (this.Income == p.getIncome());
         // return (age && name && income);
         Person new_p = (Person)p;
-        return ((this.Name.equals(new_p.Name)) && (this.Age == new_p.Age) && (this.Income == new_p.Income));
+        boolean income_check = False;
+        double income_diff = Math.abs(this.Income - new_p.Income);
+        if(income_diff < 0.01)
+        {
+            income_check = True;
+        }
+        return ((this.Name.equals(new_p.Name)) && (this.Age == new_p.Age) && income_check);
     }
 }   
 
