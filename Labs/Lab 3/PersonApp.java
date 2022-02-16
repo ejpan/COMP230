@@ -1,4 +1,3 @@
-package Labs.Lab 3;
 
 public class PersonApp 
 {
