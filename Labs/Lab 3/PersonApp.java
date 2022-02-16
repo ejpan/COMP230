@@ -1,3 +1,7 @@
+/* Application that defines the Class Person allowing user to add and get name, age, and income 
+with this well designed and implemented program.
+Gabe Seidl and Eric Pan
+*/
 
 public class PersonApp 
 {

@@ -43,12 +43,14 @@ public class Person
     }
     public boolean equals(Object p)
     {
-        // boolean name = this.Name.equals(p.getName());
-        // boolean age = (this.Age == p.getAge());
-        // boolean income = (this.Income == p.getIncome());
-        // return (age && name && income);
         Person new_p = (Person)p;
-        return ((this.Name.equals(new_p.Name)) && (this.Age == new_p.Age) && (this.Income == new_p.Income));
+        double income_diff = Math.abs(this.Income - new_p.Income);
+        boolean income = false;
+        if (income_diff < 0.01)
+        {
+            return income;
+        }
+        return ((this.Name.equals(new_p.Name)) && (this.Age == new_p.Age) && income);
     }
 }   
 
