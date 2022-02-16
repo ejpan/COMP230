@@ -43,7 +43,7 @@ public class Person
     }
     public boolean equals(Object p)
     {
-        return (Name = p.Name) && ()
+        return (Name = p.getName()) && (Age = p.getName()) && (Income = p.getIncome()) );
     }
 }   
 
