@@ -4,7 +4,7 @@ using the ASCII character number system.
 Eric Pan & Gabe Seidl
 February 17,2022 */
 
-// imports Scanner class to get user inputs.
+// Imports Scanner class to get user inputs.
 import java.util.Scanner;
 public class proj1_2
 {   
