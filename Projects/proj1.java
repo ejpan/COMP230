@@ -6,7 +6,7 @@ February 17,2022 */
 
 // Imports Scanner class to get user inputs.
 import java.util.Scanner;
-public class proj1_2
+public class proj1
 {   
     public static void main(String[] args) 
     {
