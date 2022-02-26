@@ -14,26 +14,32 @@ public class proj2_eric {
                 File out = new File(output_file);
                 Scanner reader = new Scanner(in);
                 PrintWriter pw = new PrintWriter(new FileOutputStream(out));
-                String line = reader.nextLine();
-                int temp = -10; // needs fixing
                 int total = 0;
                 int count = 0;
-                while (reader.hasNextLine()){
-                    int num = Integer.parseInt(line);
-                    if ((int) temp != num){
-                        pw.println(num);
-                        temp = num;
-                        total += num;
-                        count += 1;
-                    }else{
-                        line = reader.nextLine();
+                if (reader.hasNextLine()){
+                    String line = reader.nextLine();
+                    int first_num = Integer.parseInt(line);
+                    int temp = first_num - 1;
+                    while (reader.hasNextLine()){
+                        
+                        int num = Integer.parseInt(line);
+                        if (temp != num){
+                            pw.println(num);
+                            temp = num;
+                            total += num;
+                            count += 1;
+                        }else{
+                            line = reader.nextLine();
+                        }
                     }
+                    int num = Integer.parseInt(line);
+                    pw.println(num);
+                    total += num;
+                    count += 1;
+                    pw.println(total/count);
+                }else{
+                    pw.println(0);
                 }
-                int num = Integer.parseInt(line);
-                pw.println(num);
-                total += num;
-                count += 1;
-                pw.println(total/count);
                 reader.close();
                 pw.close();
             }catch (IOException e){
