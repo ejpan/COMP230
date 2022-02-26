@@ -15,7 +15,7 @@ public class proj2_eric {
                 Scanner reader = new Scanner(in);
                 PrintWriter pw = new PrintWriter(new FileOutputStream(out));
                 String line = reader.nextLine();
-                int temp = -10;
+                int temp = -10; // needs fixing
                 int total = 0;
                 int count = 0;
                 while (reader.hasNextLine()){
