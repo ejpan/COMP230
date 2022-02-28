@@ -22,7 +22,7 @@ public class proj2_eric {
                     int temp = first_num - 1;
                     while (reader.hasNextLine()){
                         
-                        int num = Integer.parseInt(line);
+                        int num = first_num;
                         if (temp != num){
                             pw.println(num);
                             temp = num;
