@@ -23,7 +23,10 @@ public class proj2_gabe
                 if (reader.hasNextLine())
                 {
                     int next_num = reader.nextInt();
-                    int last_num = next_num - 1;
+                    pw.println(next_num);
+                    int last_num = next_num;
+                    total += next_num;
+                    count += 1;
                     while (reader.hasNextLine())
                     {
                         if (last_num != next_num)
@@ -45,7 +48,7 @@ public class proj2_gabe
                         total += next_num;
                         count += 1;
                     }
-                    pw.println(total/1.0/count);
+                    pw.println(Math.round((total/1.0/count) * 100.0) / 100.0);
                 }
                 else
                 {
