@@ -1,13 +1,6 @@
-/*An input/output program thats reads from an ASCII file containing
-1 interger per line.  The program then outputs the integers to 
-a new file with no duplicate numbers.  Finally the program prints an
-average of the non-duplicate numbers.
-Eric Pan & Gabe Seidl
-March 1,2022 */
-
 import java.io.*;
 import java.util.Scanner;
-public class proj2 
+public class proj2_gabe 
 {
     public static void main(String[] args)
     {
