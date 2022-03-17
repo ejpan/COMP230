@@ -39,7 +39,7 @@ public class RtTriangle extends Shape {
         base = in.nextDouble();
         System.out.println("Enter height of the Right Triangle");
         height = in.nextDouble();
-        in.close();
+        
 }
 
     public String toString() {
