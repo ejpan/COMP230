@@ -35,7 +35,7 @@ public class proj3_eric {
             BufferedReader reader = new BufferedReader(new FileReader("numbers.txt"));
             String line = reader.readLine();
             System.out.println(line);
-            String[] numbers_line = line.split(",",2);
+            String[] numbers_line = line.split(",");
             System.out.println(Arrays.toString(numbers_line));
             int[] numbers = new int[numbers_line.length];
             for (int i = 0; i < numbers_line.length; i++)
