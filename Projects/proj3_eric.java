@@ -7,7 +7,7 @@ public class proj3_eric {
         int maxSum = 0;
         for (int i=0; i < nums.length; i++)
         {
-            for (int k=i; k < nums.length; i++)
+            for (int k=i; k < nums.length; k++)
             {
                 int sum = 0;
                 for (int j=i; j < k; j++)
