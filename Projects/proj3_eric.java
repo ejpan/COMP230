@@ -42,6 +42,29 @@ public class proj3_eric {
         return maxSum;
     }
 
+    static int fourthAlg (int[] nums)
+    {
+        int maxSum = 0;
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++)
+        {
+            sum += nums[i];
+            if (sum > maxSum)
+            {
+                maxSum = sum;
+            }
+            else
+            {
+                if (sum < 0)
+                {
+                    sum = 0;
+                }
+            }
+
+        }
+        return maxSum;
+    }
+
 
     public static void main(String[] args) 
     {
@@ -66,8 +89,10 @@ public class proj3_eric {
             // for (String i : numbers_line){
             //     int temp = Integer.parseInt(i);
             //     numbers.add(temp);
-            System.out.println(firstAlg(numbers));
+            //System.out.println(firstAlg(numbers));
             // System.out.println(secondAlg(numbers));
+            System.out.println(fourthAlg(numbers));
+
             input.close();
             reader.close();
 
