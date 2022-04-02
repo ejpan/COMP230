@@ -43,6 +43,12 @@ public class proj3_eric {
     }
 
 
+    static int thridAlg (int[] nums)
+    {
+        
+    }
+
+
     public static void main(String[] args) 
     {
         try
@@ -62,12 +68,10 @@ public class proj3_eric {
                 int temp = Integer.parseInt(numbers_line[i]);
                 numbers[i] = temp;
             }
-            // List<Integer> numbers = new ArrayList<>();
-            // for (String i : numbers_line){
-            //     int temp = Integer.parseInt(i);
-            //     numbers.add(temp);
+            
             System.out.println(firstAlg(numbers));
-            // System.out.println(secondAlg(numbers));
+            System.out.println(secondAlg(numbers));
+            System.out.println(thirdAlg(numbers));
             input.close();
             reader.close();
 
