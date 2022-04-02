@@ -1,3 +1,9 @@
+/*A program computing the maximal subsequence sum from a sequence of integers
+in a file with numbers separated by a single comma inputed by user. 
+The program contains four different algorithms for the purpose of complexity analysis.
+Eric Pan & Gabe Seidl
+April 1, 2022*/
+
 import java.io.*;
 import java.util.*;
 
