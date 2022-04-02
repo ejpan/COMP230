@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.*;
 
+
 public class proj3_eric {
     static int firstAlg (int[] nums) 
     {
@@ -42,6 +43,16 @@ public class proj3_eric {
         return maxSum;
     }
 
+    static int thirdAlg (int[] nums)
+    {
+        int[] first = Arrays.copyOfRange(nums, 0, nums.length/2);
+        int[] second = Arrays.copyOfRange(nums, 0, nums.length/2);
+        int maxLeftSum = thirdAlg(first);
+        int maxRightSum = thirdAlg(second);
+        
+        
+    }
+
     static int fourthAlg (int[] nums)
     {
         int maxSum = 0;
@@ -66,10 +77,7 @@ public class proj3_eric {
     }
 
 
-    static int thridAlg (int[] nums)
-    {
-        
-    }
+    
 
 
     public static void main(String[] args) 
@@ -91,12 +99,7 @@ public class proj3_eric {
                 int temp = Integer.parseInt(numbers_line[i]);
                 numbers[i] = temp;
             }
-            // List<Integer> numbers = new ArrayList<>();
-            // for (String i : numbers_line){
-            //     int temp = Integer.parseInt(i);
-            //     numbers.add(temp);
-            //System.out.println(firstAlg(numbers));
-            // System.out.println(secondAlg(numbers));
+            System.out.println(thirdAlg(numbers));
             System.out.println(fourthAlg(numbers));
 
             input.close();
