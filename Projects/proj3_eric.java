@@ -53,17 +53,15 @@ public class proj3_eric {
     {
         int[] first = Arrays.copyOfRange(nums, 0, nums.length/2);
         int[] second = Arrays.copyOfRange(nums, nums.length/2, nums.length);
-        int[] maxLeftSum = leftSum(first);
-        int[] maxRightSum = rightSum(second);
+        int[] maxLeftSum = maxLeftSum(first);
+        int[] maxRightSum = maxRightSum(second);
         System.out.println(maxLeftSum[0]);
         System.out.println(maxRightSum[1]);
-        // maxSum = 0
-        // sum = left + right  : return maxSum
-        // else (left) 
+        
         
     }
 
-    static int[] leftSum (int[] nums)
+    static int[] maxLeftSum (int[] nums)
     {
         if (nums.length == 1){
             int[] digit = {nums[0],nums[0]};
@@ -73,8 +71,8 @@ public class proj3_eric {
             //System.out.println(Arrays.toString(first));
             int[] second = Arrays.copyOfRange(nums, nums.length/2, nums.length);
             //System.out.println(Arrays.toString(second));
-            int[] left = leftSum(first);
-            int[] right = leftSum(second);
+            int[] left = maxLeftSum(first);
+            int[] right = maxLeftSum(second);
             int sum = left[1] + right[1];
             if (left[1] + right[0] > left[0])
             {
@@ -91,7 +89,7 @@ public class proj3_eric {
 
     }
 
-    static int[] rightSum (int[] nums)
+    static int[] maxRightSum (int[] nums)
     {
         if (nums.length == 1){
             int[] digit = {nums[0],nums[0]};
@@ -102,16 +100,20 @@ public class proj3_eric {
             //System.out.println(Arrays.toString(first));
             
             //System.out.println(Arrays.toString(second));
-            int[] right = rightSum(first);
-            int[] left = rightSum(second);
+            int[] right = maxRightSum(first);
+            int[] left = maxRightSum(second);
             int sum = left[0] + right[0];
+            // Case 1: If right recursion sum and left dights of left recursion sum is greater than right most digit
             if (right[0] + left[1] > right[1])
             {
                 right[1] = right[0] + left[1];
+            // Case 2: If total sum from right and left recursion is greater than right most digit
             }else if (sum > right[0])
             {
                 right[1] = left[0] + right[0];
             }
+            // right[1] keeps track of the highest subsequence sum on the right
+            // variable sum keeps track of total sum from both left and right recursions
             int[] sums = {sum, right[1]};
             System.out.println(Arrays.toString(sums));
             return sums;
