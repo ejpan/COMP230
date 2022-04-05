@@ -55,10 +55,12 @@ public class proj3_eric {
         int[] second = Arrays.copyOfRange(nums, nums.length/2, nums.length);
         int[] maxLeftSum = maxLeftSum(first);
         int[] maxRightSum = maxRightSum(second);
-        System.out.println(maxLeftSum[0]);
-        System.out.println(maxRightSum[1]);
-        
-        
+        int[] maxLeftBoundSum = maxLeftBoundSum(first);
+        int[] maxRightBoundSum = maxRightBoundSum(second);
+        System.out.println(maxLeftBoundSum[1]);
+        System.out.println(maxRightBoundSum[0]);
+        int maxSum = Math.max(Math.max(maxLeftSum[0],maxRightSum[1]), maxLeftBoundSum[1] + maxRightBoundSum[0]);
+        System.out.println(maxSum); 
     }
 
     static int[] maxLeftSum (int[] nums)
@@ -85,8 +87,6 @@ public class proj3_eric {
             //System.out.println(Arrays.toString(sums));
             return sums;
         }
-        
-
     }
 
     static int[] maxRightSum (int[] nums)
@@ -121,6 +121,55 @@ public class proj3_eric {
         
 
     }
+
+    static int[] maxLeftBoundSum(int[] nums)
+    {
+        if (nums.length == 1)
+        {
+            int[] digit = {nums[0],nums[0]};
+            return digit;
+        }else{
+            int[] first = Arrays.copyOfRange(nums, 0, nums.length/2);
+            int[] second = Arrays.copyOfRange(nums, nums.length/2, nums.length);
+            int[] right = maxLeftBoundSum(second);
+            int[] left = maxLeftBoundSum(first);
+            
+            int sum = left[0] + right[0];
+            if (right[0] + left [0] > right[0])
+            {
+                right[1] = right[0] + left[0];
+            }else if(right[0] + left[1] > right[0])
+            {
+                right[1] = right[0] + left[1];
+            }
+            int[] sums = {sum,right[1]};
+            return sums;
+        }
+    }
+
+    static int[] maxRightBoundSum(int[] nums){
+        if (nums.length == 1)
+        {
+            int[] digit = {nums[0],nums[0]};
+            return digit;
+        }else{
+            int[] first = Arrays.copyOfRange(nums, 0, nums.length/2);
+            int[] second = Arrays.copyOfRange(nums, nums.length/2, nums.length);
+            int[] left = maxRightBoundSum(first);
+            int[] right = maxRightBoundSum(second);
+            int sum = left[1] + right[1];
+            if (left[1] + right[1] > left[0])
+            {
+                left[0] = left[1] + right[1];
+            }else if(left[1] + right[0] > left[0])
+            {
+                left[0] = left[1] + right[0];
+            }
+            int[] sums = {left[0], sum};
+            return sums;
+        }
+    }
+
 
     static int fourthAlg (int[] nums)
     {
