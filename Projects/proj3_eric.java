@@ -50,7 +50,7 @@ public class proj3_eric
         return maxSum;
     }
 
-    private static void thirdAlg (int[] nums)
+    private static int thirdAlg (int[] nums)
     {
         int[] first = Arrays.copyOfRange(nums, 0, nums.length/2);
         int[] second = Arrays.copyOfRange(nums, nums.length/2, nums.length);
@@ -58,10 +58,10 @@ public class proj3_eric
         int[] maxRightSum = maxRightSum(second);
         int[] maxLeftBoundSum = maxLeftBoundSum(first);
         int[] maxRightBoundSum = maxRightBoundSum(second);
-        System.out.println(maxLeftBoundSum[1]);
-        System.out.println(maxRightBoundSum[0]);
+        //System.out.println(maxLeftBoundSum[1]);
+        //System.out.println(maxRightBoundSum[0]);
         int maxSum = Math.max(Math.max(maxLeftSum[0],maxRightSum[1]), maxLeftBoundSum[1] + maxRightBoundSum[0]);
-        System.out.println(maxSum); 
+        return maxSum; 
     }
 
     private static int[] maxLeftSum (int[] nums)
@@ -116,7 +116,7 @@ public class proj3_eric
             // right[1] keeps track of the highest subsequence sum on the right
             // variable sum keeps track of total sum from both left and right recursions
             int[] sums = {sum, right[1]};
-            System.out.println(Arrays.toString(sums));
+            //System.out.println(Arrays.toString(sums));
             return sums;
         }
         
@@ -219,8 +219,10 @@ public class proj3_eric
                 int temp = Integer.parseInt(numbers_line[i]);
                 numbers[i] = temp;
             }
-            thirdAlg(numbers);
-            System.out.println(fourthAlg(numbers));
+            System.out.println("First Algorithm: " + firstAlg(numbers));
+            System.out.println("Second Algorithm: " + secondAlg(numbers));
+            System.out.println("Third Alg: " + thirdAlg(numbers));
+            System.out.println("Fourth Alg: " + fourthAlg(numbers));
             input.close();
             reader.close();
 
