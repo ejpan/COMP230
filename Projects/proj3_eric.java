@@ -12,9 +12,11 @@ public class proj3_eric
 {
     private static int firstAlg (int[] nums) 
     {
-        int maxSum = 0;
-        for (int i=0; i < nums.length; i++)
-        {
+        int maxSum = 0;  //variable contains current max substring sum
+        for (int i=0; i < nums.length; i++)  // 3 for loops that find every possible subsequence sum
+        {                                    // by setting every index as the start point, i, and increasing the 
+                                             // end point, k, through each iteration and adding indexes i-k by 
+                                             // iterating through the j loop.
             for (int k=i; k < nums.length; k++)
             {
                 int sum = 0;
@@ -24,7 +26,7 @@ public class proj3_eric
                 }
                 if (sum > maxSum)
                 {
-                    maxSum = sum;
+                    maxSum = sum;  // replaces maxSum if necessary
                 }
             }
             
