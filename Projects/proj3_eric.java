@@ -8,8 +8,9 @@ import java.io.*;
 import java.util.*;
 
 
-public class proj3_eric {
-    static int firstAlg (int[] nums) 
+public class proj3_eric 
+{
+    private static int firstAlg (int[] nums) 
     {
         int maxSum = 0;
         for (int i=0; i < nums.length; i++)
@@ -31,7 +32,7 @@ public class proj3_eric {
         return maxSum;
     }
 
-    static int secondAlg (int[] nums)
+    private static int secondAlg (int[] nums)
     {
         int maxSum = 0;
         for(int i = 0; i < nums.length; i++)
@@ -49,7 +50,7 @@ public class proj3_eric {
         return maxSum;
     }
 
-    static void thirdAlg (int[] nums)
+    private static void thirdAlg (int[] nums)
     {
         int[] first = Arrays.copyOfRange(nums, 0, nums.length/2);
         int[] second = Arrays.copyOfRange(nums, nums.length/2, nums.length);
@@ -63,7 +64,7 @@ public class proj3_eric {
         System.out.println(maxSum); 
     }
 
-    static int[] maxLeftSum (int[] nums)
+    private static int[] maxLeftSum (int[] nums)
     {
         if (nums.length == 1){
             int[] digit = {nums[0],nums[0]};
@@ -89,7 +90,7 @@ public class proj3_eric {
         }
     }
 
-    static int[] maxRightSum (int[] nums)
+    private static int[] maxRightSum (int[] nums)
     {
         if (nums.length == 1){
             int[] digit = {nums[0],nums[0]};
@@ -122,7 +123,7 @@ public class proj3_eric {
 
     }
 
-    static int[] maxLeftBoundSum(int[] nums)
+    private static int[] maxLeftBoundSum(int[] nums)
     {
         if (nums.length == 1)
         {
@@ -147,7 +148,7 @@ public class proj3_eric {
         }
     }
 
-    static int[] maxRightBoundSum(int[] nums){
+    private static int[] maxRightBoundSum(int[] nums){
         if (nums.length == 1)
         {
             int[] digit = {nums[0],nums[0]};
@@ -171,7 +172,8 @@ public class proj3_eric {
     }
 
 
-    static int fourthAlg (int[] nums)
+
+    private static int fourthAlg (int[] nums)
     {
         int maxSum = 0;
         int sum = 0;
@@ -218,8 +220,7 @@ public class proj3_eric {
                 numbers[i] = temp;
             }
             thirdAlg(numbers);
-            //System.out.println(fourthAlg(numbers));
-
+            System.out.println(fourthAlg(numbers));
             input.close();
             reader.close();
 
@@ -234,5 +235,5 @@ public class proj3_eric {
         
     }
         
-    }
+}
 
