@@ -52,140 +52,102 @@ public class proj3_eric
 
     private static int thirdAlg (int[] nums)
     {
+        // splits array in parameter in half
         int[] first = Arrays.copyOfRange(nums, 0, nums.length/2);
         int[] second = Arrays.copyOfRange(nums, nums.length/2, nums.length);
+        // finds the maximal subsequence sum in the first half of array starting from the left digit
         int[] maxLeftSum = maxLeftSum(first);
+        // finds the maximal subsequence sum in the second half of array starting from the right digit
         int[] maxRightSum = maxRightSum(second);
-        int[] maxLeftBoundSum = maxLeftBoundSum(first);
-        int[] maxRightBoundSum = maxRightBoundSum(second);
-        //System.out.println(maxLeftBoundSum[1]);
-        //System.out.println(maxRightBoundSum[0]);
+        // finds the maximal subsequence sum in the first half of array starting from the right digit
+        int[] maxLeftBoundSum = maxRightSum(first);
+        // finds the maximal subsequence sum in the second half of array starting from the left digit
+        int[] maxRightBoundSum = maxLeftSum(second);
+        // finds the maximal subsequence sum entirely starting from the left, right, and middle
         int maxSum = Math.max(Math.max(maxLeftSum[0],maxRightSum[1]), maxLeftBoundSum[1] + maxRightBoundSum[0]);
         return maxSum; 
     }
 
     private static int[] maxLeftSum (int[] nums)
     {
+        //base case
         if (nums.length == 1){
             int[] digit = {nums[0],nums[0]};
             return digit;
         }else{
+            //splits array in parameter in half
             int[] first = Arrays.copyOfRange(nums, 0, nums.length/2);
-            //System.out.println(Arrays.toString(first));
             int[] second = Arrays.copyOfRange(nums, nums.length/2, nums.length);
-            //System.out.println(Arrays.toString(second));
+            //recursion for both arrays. left array first because we are finding the maxsum for the left
             int[] left = maxLeftSum(first);
             int[] right = maxLeftSum(second);
+            // The greatest left digit is preserved in the first index and the total sum for all digits is preserved in the second index
             int sum = left[1] + right[1];
+            // Case 1: if left total + right greatest sum is greater than the greatest left digit
             if (left[1] + right[0] > left[0])
             {
                 left[0] = left[1] + right[0];
+            // Case 2: if sum from both arrays are greater than the greatest left digit
             }else if (sum > left[0])
             {
                 left[0] = left[1] + right[1];
             }
+            // greatest left digit is the first index and total sum from both arrays are in the second index
             int[] sums = {left[0], sum};
-            //System.out.println(Arrays.toString(sums));
             return sums;
         }
     }
 
     private static int[] maxRightSum (int[] nums)
     {
+        // base case
         if (nums.length == 1){
             int[] digit = {nums[0],nums[0]};
             return digit;
         }else{
+            //splits array in parameter in half
             int[] first = Arrays.copyOfRange(nums, nums.length/2, nums.length);
             int[] second = Arrays.copyOfRange(nums, 0, nums.length/2);
-            //System.out.println(Arrays.toString(first));
-            
-            //System.out.println(Arrays.toString(second));
+            //recursion for both arrays. right array first because we are finding the max sum for the right
             int[] right = maxRightSum(first);
             int[] left = maxRightSum(second);
+            // The greatest right digit is preserved in right[1] and the total sum for all digits is preserved in the first index
             int sum = left[0] + right[0];
-            // Case 1: If right recursion sum and left dights of left recursion sum is greater than right most digit
+            // Case 1: if right total and left greatest sum is greater than the greatest right digit
             if (right[0] + left[1] > right[1])
             {
                 right[1] = right[0] + left[1];
-            // Case 2: If total sum from right and left recursion is greater than right most digit
+            // Case 2: if sum from both arrays are greater than the greatest right digit
             }else if (sum > right[0])
             {
                 right[1] = left[0] + right[0];
             }
-            // right[1] keeps track of the highest subsequence sum on the right
-            // variable sum keeps track of total sum from both left and right recursions
+            // greatest right digit is in the second index and total sum from both arrays are in the first index
             int[] sums = {sum, right[1]};
-            //System.out.println(Arrays.toString(sums));
             return sums;
         }
         
 
     }
 
-    private static int[] maxLeftBoundSum(int[] nums)
-    {
-        if (nums.length == 1)
-        {
-            int[] digit = {nums[0],nums[0]};
-            return digit;
-        }else{
-            int[] first = Arrays.copyOfRange(nums, 0, nums.length/2);
-            int[] second = Arrays.copyOfRange(nums, nums.length/2, nums.length);
-            int[] right = maxLeftBoundSum(second);
-            int[] left = maxLeftBoundSum(first);
-            
-            int sum = left[0] + right[0];
-            if (right[0] + left [0] > right[0])
-            {
-                right[1] = right[0] + left[0];
-            }else if(right[0] + left[1] > right[0])
-            {
-                right[1] = right[0] + left[1];
-            }
-            int[] sums = {sum,right[1]};
-            return sums;
-        }
-    }
-
-    private static int[] maxRightBoundSum(int[] nums){
-        if (nums.length == 1)
-        {
-            int[] digit = {nums[0],nums[0]};
-            return digit;
-        }else{
-            int[] first = Arrays.copyOfRange(nums, 0, nums.length/2);
-            int[] second = Arrays.copyOfRange(nums, nums.length/2, nums.length);
-            int[] left = maxRightBoundSum(first);
-            int[] right = maxRightBoundSum(second);
-            int sum = left[1] + right[1];
-            if (left[1] + right[1] > left[0])
-            {
-                left[0] = left[1] + right[1];
-            }else if(left[1] + right[0] > left[0])
-            {
-                left[0] = left[1] + right[0];
-            }
-            int[] sums = {left[0], sum};
-            return sums;
-        }
-    }
-
-
 
     private static int fourthAlg (int[] nums)
     {
         int maxSum = 0;
         int sum = 0;
+        // iterates through each element in nums
         for (int i = 0; i < nums.length; i++)
         {
+            // adds each element to the variable sum
             sum += nums[i];
+            // if sum is greater than 0, assign sum to maxSum
             if (sum > maxSum)
             {
                 maxSum = sum;
             }
             else
             {
+                // if sum is negative, reset sum to 0
                 if (sum < 0)
                 {
                     sum = 0;
