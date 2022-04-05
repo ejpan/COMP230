@@ -17,10 +17,10 @@ public class proj3_eric
         {                                    // by setting every index as the start point, i, and increasing the 
                                              // end point, k, through each iteration and adding indexes i-k by 
                                              // iterating through the j loop.
-            for (int k=i; k < nums.length; k++)
+            for (int k=i; k < nums.length; k++) // starts at i and changes end point each iteration
             {
                 int sum = 0;
-                for (int j=i; j < k; j++)
+                for (int j=i; j < k; j++)  // runs through indeces i - k
                 {
                     sum += nums[j];
                 }
