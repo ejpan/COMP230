@@ -191,7 +191,6 @@ public class proj3_eric
                     sum = 0;
                 }
             }
-
         }
         return maxSum;
     }
