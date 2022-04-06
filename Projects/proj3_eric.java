@@ -200,7 +200,7 @@ public class proj3_eric
             Scanner input = new Scanner(System.in);
             while (keep_going)
             {
-                System.out.println("Enter file name with numbers seperated by a single comma");
+                System.out.println("Enter file name with numbers seperated by a single comma:");
                 String filename = input.nextLine();
                 BufferedReader reader = new BufferedReader(new FileReader(filename));
                 //BufferedReader reader = new BufferedReader(new FileReader("numbers.txt"));
