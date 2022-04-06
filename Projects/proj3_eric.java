@@ -37,10 +37,13 @@ public class proj3_eric
     private static int secondAlg (int[] nums)
     {
         int maxSum = 0;
+        // loops through nums 
         for(int i = 0; i < nums.length; i++)
         {
             int sum = 0;
-            for(int j = i; j < nums.length; j++)
+            for(int j = i; j < nums.length; j++) // inner loop starts at index i and goes to the end
+                                                // of the array, adding each consectutive number
+                                                // to check for max subsequence sum
             {
                 sum += nums[j];
                 if (sum > maxSum)
