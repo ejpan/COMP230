@@ -162,35 +162,74 @@ public class proj3_eric
         return maxSum;
     }
 
+    private static void runFirst(int[] nums)
+    {
+        System.out.println("First Algorithm: " + firstAlg(nums));
+    }
 
-    
+    private static void runSecond(int[] nums)
+    {
+        System.out.println("Second Algorithm: " + secondAlg(nums));
+    }
+
+    private static void runThird(int[] nums)
+    {
+        System.out.println("Third Alg: " + thirdAlg(nums));
+    }
+
+    private static void runFourth(int[] nums)
+    {
+        System.out.println("Fourth Alg: " + fourthAlg(nums));
+    }
+
+    private static void runAll(int[] nums)
+    {
+        System.out.println("First Algorithm: " + firstAlg(nums));
+        System.out.println("Second Algorithm: " + secondAlg(nums));
+        System.out.println("Third Alg: " + thirdAlg(nums));
+        System.out.println("Fourth Alg: " + fourthAlg(nums));
+    }
 
 
     public static void main(String[] args) 
     {
         try
         {
+            boolean keep_going = true;
+            String ans = "";
             Scanner input = new Scanner(System.in);
-            //System.out.println("Enter file name with numbers seperated by a single comma");
-            //String filename = input.nextLine();
-            //BufferedReader reader = new BufferedReader(new FileReader(filename));
-            BufferedReader reader = new BufferedReader(new FileReader("numbers.txt"));
-            String line = reader.readLine();
-            System.out.println(line);
-            String[] numbers_line = line.split(",");
-            System.out.println(Arrays.toString(numbers_line));
-            int[] numbers = new int[numbers_line.length];
-            for (int i = 0; i < numbers_line.length; i++)
+            while (keep_going)
             {
-                int temp = Integer.parseInt(numbers_line[i]);
-                numbers[i] = temp;
+                System.out.println("Enter file name with numbers seperated by a single comma");
+                String filename = input.nextLine();
+                BufferedReader reader = new BufferedReader(new FileReader(filename));
+                //BufferedReader reader = new BufferedReader(new FileReader("numbers.txt"));
+                String line = reader.readLine();
+                System.out.println(line);
+                String[] numbers_line = line.split(",");
+                System.out.println(Arrays.toString(numbers_line));
+                int[] numbers = new int[numbers_line.length];
+                for (int i = 0; i < numbers_line.length; i++)
+                {
+                    int temp = Integer.parseInt(numbers_line[i]);
+                    numbers[i] = temp;
+                }
+                System.out.print("Which algorithm would you like to run?\n1:First Alogorithm (3 Loops)\n2: Second Algorithm (2 Loops)\n3: Third Algorithm (Recursive)\n4: Fourth Algoritm (1 Loop)\n5: Run all\n");
+                String choice = input.nextLine();
+                if (choice.equals("1")) {runFirst(numbers);}
+                else if(choice.equals("2")) {runSecond(numbers);}
+                else if(choice.equals("3")) {runThird(numbers);}
+                else if(choice.equals("4")) {runFourth(numbers);}
+                else {runAll(numbers);}
+                System.out.print("Would you like to run the program again? (Y for yes, N for no): ");
+                ans = input.nextLine();
+                if(ans.toLowerCase().equals("N"))
+                {
+                    keep_going = false;
+                }
+                reader.close();
             }
-            System.out.println("First Algorithm: " + firstAlg(numbers));
-            System.out.println("Second Algorithm: " + secondAlg(numbers));
-            System.out.println("Third Alg: " + thirdAlg(numbers));
-            System.out.println("Fourth Alg: " + fourthAlg(numbers));
             input.close();
-            reader.close();
 
         }
         catch (FileNotFoundException e)
