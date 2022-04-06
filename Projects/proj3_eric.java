@@ -164,30 +164,42 @@ public class proj3_eric
 
     private static void runFirst(int[] nums)
     {
+        double start = System.nanoTime();
         System.out.println("First Algorithm: " + firstAlg(nums));
+        double end = System.nanoTime();
+        System.out.println("The 1st Algorithm took " + (end - start) + " nanoseconds!");
     }
 
     private static void runSecond(int[] nums)
     {
+        double start = System.nanoTime();
         System.out.println("Second Algorithm: " + secondAlg(nums));
+        double end = System.nanoTime();
+        System.out.println("The 2nd Algorithm took " + (end - start) + " nanoseconds!");
     }
 
     private static void runThird(int[] nums)
     {
+        double start = System.nanoTime();
         System.out.println("Third Alg: " + thirdAlg(nums));
+        double end = System.nanoTime();
+        System.out.println("The 3rd Algorithm took " + (end - start) + " nanoseconds!");
     }
 
     private static void runFourth(int[] nums)
     {
+        double start = System.nanoTime();
         System.out.println("Fourth Alg: " + fourthAlg(nums));
+        double end = System.nanoTime();
+        System.out.println("The 4th Algorithm took " + (end - start) + " nanoseconds!");
     }
 
     private static void runAll(int[] nums)
     {
-        System.out.println("First Algorithm: " + firstAlg(nums));
-        System.out.println("Second Algorithm: " + secondAlg(nums));
-        System.out.println("Third Alg: " + thirdAlg(nums));
-        System.out.println("Fourth Alg: " + fourthAlg(nums));
+        runFirst(nums);
+        runSecond(nums);
+        runThird(nums);
+        runFourth(nums);
     }
 
 
@@ -200,14 +212,13 @@ public class proj3_eric
             Scanner input = new Scanner(System.in);
             while (keep_going)
             {
-                System.out.println("Enter file name with numbers seperated by a single comma");
+                System.out.println("Enter file name with numbers seperated by a single comma:");
                 String filename = input.nextLine();
                 BufferedReader reader = new BufferedReader(new FileReader(filename));
                 //BufferedReader reader = new BufferedReader(new FileReader("numbers.txt"));
                 String line = reader.readLine();
-                System.out.println(line);
+                System.out.println(line + "\n");
                 String[] numbers_line = line.split(",");
-                System.out.println(Arrays.toString(numbers_line));
                 int[] numbers = new int[numbers_line.length];
                 for (int i = 0; i < numbers_line.length; i++)
                 {
@@ -216,6 +227,7 @@ public class proj3_eric
                 }
                 System.out.print("Which algorithm would you like to run?\n1:First Alogorithm (3 Loops)\n2: Second Algorithm (2 Loops)\n3: Third Algorithm (Recursive)\n4: Fourth Algoritm (1 Loop)\n5: Run all\n");
                 String choice = input.nextLine();
+                System.out.println("\n");
                 if (choice.equals("1")) {runFirst(numbers);}
                 else if(choice.equals("2")) {runSecond(numbers);}
                 else if(choice.equals("3")) {runThird(numbers);}
@@ -223,7 +235,7 @@ public class proj3_eric
                 else {runAll(numbers);}
                 System.out.print("Would you like to run the program again? (Y for yes, N for no): ");
                 ans = input.nextLine();
-                if(ans.toLowerCase().equals("N"))
+                if(ans.toLowerCase().equals("n"))
                 {
                     keep_going = false;
                 }
