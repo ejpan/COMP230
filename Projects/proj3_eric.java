@@ -68,10 +68,10 @@ public class proj3_eric
         int[] maxLeftBoundSum = maxRightBoundSum(first);
         // finds the maximal subsequence sum in the second half of array starting from the left digit
         int[] maxRightBoundSum = maxLeftBoundSum(second);
-        //System.out.println(Arrays.toString(maxLeftSum));
-        //System.out.println(Arrays.toString(maxRightSum));
-        //System.out.println(Arrays.toString(maxLeftBoundSum));
-        //System.out.println(Arrays.toString(maxRightBoundSum));
+        System.out.println(Arrays.toString(maxLeftSum));
+        System.out.println(Arrays.toString(maxRightSum));
+        System.out.println(Arrays.toString(maxLeftBoundSum));
+        System.out.println(Arrays.toString(maxRightBoundSum));
         // finds the maximal subsequence sum entirely starting from the left, right, and middle
         int maxSum = Math.max(Math.max(maxLeftSum[0],maxRightSum[1]), maxLeftBoundSum[1] + maxRightBoundSum[0]);
         return maxSum; 
@@ -167,11 +167,11 @@ public class proj3_eric
             if (left[1] > left[0]){
                 left[1] = left[0];
             }
-            // Cause 4: if left most digit in left array is greater than the total of the right array
-            if (right[0] > left[1])
+            // Cause 4: if left most digit in left array is greater than the total and right most digit of the right array
+            if (right[0] > left[0] && right[0] > left[1])
             {
-                left[0] = right[0];
                 sum = left[0];
+                left[0] = right[0];
             }
             // greatest left digit is the first index and total sum from both arrays are in the second index
             int[] sums = {left[0], sum};
@@ -204,17 +204,18 @@ public class proj3_eric
             {
                 right[1] = left[0] + right[0];
             }
-            // Case 3: if total is greater than right most digit
+            // Case 3: if right total is greater than right most digit
             if (right[0] > right[1]){
                 right[1] = right[0];
             }
-            // Case 4: if right most digit in left array is greater than the total of the right array
-            if (left[1] > right[0] ) {
+            // Case 4: if right most digit in left array is greater than the total and right most digit of the right array
+            if (left[1] > right[0] && left[1] > right[1] ) {
                 sum = left[1];
                 right[1] = left[1];
             }
             // greatest right digit is in the second index and total sum from both arrays are in the first index
             int[] sums = {sum, right[1]};
+            System.out.println(Arrays.toString(sums));
             return sums;
         }
     }
