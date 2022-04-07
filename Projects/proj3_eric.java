@@ -225,7 +225,6 @@ public class proj3_eric
                         running = false;
                     }
                     BufferedReader reader = new BufferedReader(new FileReader(filename));
-                    //BufferedReader reader = new BufferedReader(new FileReader("numbers.txt"));
                     String line = reader.readLine();
                     System.out.println("\n");
                     String[] numbers_line = line.split(",");
