@@ -59,21 +59,22 @@ public class proj3_eric
     {
         // splits array in parameter in half
         int maxSum;
-        if (nums.length == 1)
+        if (nums.length == 1) // case if array length is 1
         {
             return nums[0];
         }
         else
         {
-            int[] first = Arrays.copyOfRange(nums, 0, nums.length/2);
-            int[] second = Arrays.copyOfRange(nums, nums.length/2, nums.length);
-            maxSum = Math.max(Math.max(maxLeftSum(first), maxRightSum(second)), maxLeftBoundSum(first) + maxRightBoundSum(second));
+            int[] first = Arrays.copyOfRange(nums, 0, nums.length/2); // makes array from left half
+            int[] second = Arrays.copyOfRange(nums, nums.length/2, nums.length); // makes array from right half
+            maxSum = Math.max(Math.max(maxLeftSum(first), maxRightSum(second)), maxLeftBoundSum(first) + maxRightBoundSum(second)); // finds the max sum from the right side, left side, and middle
             return maxSum; 
         }
     }
 
     private static int maxLeftBoundSum (int[] nums)
     {
+        // starts from the last element of the left array and finds max sum including it
         int maxSum = 0;
         int sum = 0;
         for (int i = nums.length - 1; i >= 0; i--)
@@ -88,7 +89,7 @@ public class proj3_eric
     }
 
     private static int maxRightBoundSum (int[] nums)
-    //includes the right most digit
+    // starts from first index in right array and finds max sum including it
     {
         int maxSum = 0;
         int sum = 0;
@@ -106,11 +107,11 @@ public class proj3_eric
     private static int maxLeftSum (int[] nums)
     {
         int maxSum;
-        if (nums.length == 1)
+        if (nums.length == 1) // base case
         {
             return nums[0];
         }
-        else
+        else // recursively calls maxLeft and maxRight until the maximum subsequence is found from original left array
         {
             int[] first = Arrays.copyOfRange(nums, 0, nums.length/2);
             int[] second = Arrays.copyOfRange(nums, nums.length/2, nums.length);
@@ -122,11 +123,12 @@ public class proj3_eric
     private static int maxRightSum (int[] nums)
     {
         int maxSum;
-        if (nums.length == 1)
+        if (nums.length == 1) // base case
         {
-            return nums[0];
+            return nums[0]; 
         }
-        else
+        else // recursively calls maxLeft and maxRight until the maximum subsequence is found from original right array
+
         {
             int[] first = Arrays.copyOfRange(nums, 0, nums.length/2);
             int[] second = Arrays.copyOfRange(nums, nums.length/2, nums.length);
