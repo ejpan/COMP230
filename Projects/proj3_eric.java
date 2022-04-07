@@ -209,18 +209,18 @@ public class proj3_eric
     public static void main(String[] args) 
     {
         boolean running = true;
-        while(running)
+        while(running) // keeps running even when file not found, user can type exit to leave
         {
             try
             {
-                boolean keep_going = true;
+                boolean keep_going = true; // asks for user if they want to run again
                 String ans = "";
                 Scanner input = new Scanner(System.in);
                 while (keep_going)
                 {
                     System.out.println("Enter file name with numbers seperated by a single comma:");
                     String filename = input.nextLine();
-                    if (filename.equals("exit"))
+                    if (filename.equals("exit")) // user can type exit to close program
                     {
                         running = false;
                     }
@@ -231,7 +231,7 @@ public class proj3_eric
                     int[] numbers = new int[numbers_line.length];
                     for (int i = 0; i < numbers_line.length; i++)
                     {
-                        int temp = Integer.parseInt(numbers_line[i]);
+                        int temp = Integer.parseInt(numbers_line[i]); //converts str array to int array
                         numbers[i] = temp;
                     }
                     System.out.print("Which algorithm would you like to run?\n1:First Alogorithm (3 Loops)\n2: Second Algorithm (2 Loops)\n3: Third Algorithm (Recursive)\n4: Fourth Algoritm (1 Loop)\n5: Run all\n");
