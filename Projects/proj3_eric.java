@@ -290,51 +290,64 @@ public class proj3_eric
 
     public static void main(String[] args) 
     {
-        try
+        boolean running = true;
+        while(running)
         {
-            boolean keep_going = true;
-            String ans = "";
-            Scanner input = new Scanner(System.in);
-            while (keep_going)
+            try
             {
-                System.out.println("Enter file name with numbers seperated by a single comma:");
-                String filename = input.nextLine();
-                BufferedReader reader = new BufferedReader(new FileReader(filename));
-                //BufferedReader reader = new BufferedReader(new FileReader("numbers.txt"));
-                String line = reader.readLine();
-                System.out.println("\n");
-                String[] numbers_line = line.split(",");
-                int[] numbers = new int[numbers_line.length];
-                for (int i = 0; i < numbers_line.length; i++)
+                boolean keep_going = true;
+                String ans = "";
+                Scanner input = new Scanner(System.in);
+                while (keep_going)
                 {
-                    int temp = Integer.parseInt(numbers_line[i]);
-                    numbers[i] = temp;
+                    System.out.println("Enter file name with numbers seperated by a single comma:");
+                    String filename = input.nextLine();
+                    if (filename.equals("exit"))
+                    {
+                        running = false;
+                    }
+                    BufferedReader reader = new BufferedReader(new FileReader(filename));
+                    //BufferedReader reader = new BufferedReader(new FileReader("numbers.txt"));
+                    String line = reader.readLine();
+                    System.out.println("\n");
+                    String[] numbers_line = line.split(",");
+                    int[] numbers = new int[numbers_line.length];
+                    for (int i = 0; i < numbers_line.length; i++)
+                    {
+                        int temp = Integer.parseInt(numbers_line[i]);
+                        numbers[i] = temp;
+                    }
+                    System.out.print("Which algorithm would you like to run?\n1:First Alogorithm (3 Loops)\n2: Second Algorithm (2 Loops)\n3: Third Algorithm (Recursive)\n4: Fourth Algoritm (1 Loop)\n5: Run all\n");
+                    String choice = input.nextLine();
+                    System.out.println("\n");
+                    if (choice.equals("1")) {runFirst(numbers);}
+                    else if(choice.equals("2")) {runSecond(numbers);}
+                    else if(choice.equals("3")) {runThird(numbers);}
+                    else if(choice.equals("4")) {runFourth(numbers);}
+                    else {runAll(numbers);}
+                    System.out.print("Would you like to run the program again? (Y for yes, N for no): ");
+                    ans = input.nextLine();
+                    if(ans.toLowerCase().equals("n"))
+                    {
+                        keep_going = false;
+                        running = false;
+                    }
+                    reader.close();
                 }
-                System.out.print("Which algorithm would you like to run?\n1:First Alogorithm (3 Loops)\n2: Second Algorithm (2 Loops)\n3: Third Algorithm (Recursive)\n4: Fourth Algoritm (1 Loop)\n5: Run all\n");
-                String choice = input.nextLine();
-                System.out.println("\n");
-                if (choice.equals("1")) {runFirst(numbers);}
-                else if(choice.equals("2")) {runSecond(numbers);}
-                else if(choice.equals("3")) {runThird(numbers);}
-                else if(choice.equals("4")) {runFourth(numbers);}
-                else {runAll(numbers);}
-                System.out.print("Would you like to run the program again? (Y for yes, N for no): ");
-                ans = input.nextLine();
-                if(ans.toLowerCase().equals("n"))
-                {
-                    keep_going = false;
-                }
-                reader.close();
-            }
-            input.close();
+                input.close();
 
-        }
-        catch (FileNotFoundException e)
-        {
-            System.out.println(e.getMessage());
-        } catch (IOException e)
-        {
-            System.out.println(e.getMessage());
+            }
+            catch (FileNotFoundException e)
+            {
+                if(running)
+                {
+                    System.out.println(e.getMessage());
+                    System.out.println("File not found, please try again or \"exit\" to exit: ");
+                }
+            } catch (IOException e)
+            {
+                System.out.println(e.getMessage());
+            }
         }
         
     }
