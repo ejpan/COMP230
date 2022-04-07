@@ -166,9 +166,9 @@ public class proj3_eric
 
     private static void runFirst(int[] nums)
     {
-        double start = System.nanoTime();
+        double start = System.nanoTime();  // start time for time
         System.out.println("First Algorithm: " + firstAlg(nums));
-        double end = System.nanoTime();
+        double end = System.nanoTime(); // gets end time
         System.out.println("The 1st Algorithm took " + (end - start) + " nanoseconds!");
     }
 
@@ -198,6 +198,7 @@ public class proj3_eric
 
     private static void runAll(int[] nums)
     {
+        //runs all algs
         runFirst(nums);
         runSecond(nums);
         runThird(nums);
