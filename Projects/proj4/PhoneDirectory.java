@@ -5,7 +5,7 @@ public class PhoneDirectory
     private ArrayList<DirectoryEntry> theDirectory = new ArrayList<DirectoryEntry>();
     Scanner kb = new Scanner(System.in);
 
-    public String addOrChangeEntry(String name, String number)
+    public static String addOrChangeEntry(String name, String number)
     {
         System.out.print("Would you like to add or change an entry?\n1. Add Entry\n2. Change Entry\n");
         String ans = kb.nextLine();
@@ -32,7 +32,7 @@ public class PhoneDirectory
         return null;
     }
 
-    public DirectoryEntry searchEntry(String name)
+    public static DirectoryEntry searchEntry(String name)
     {
         int index = theDirectory.indexOf(new DirectoryEntry(name,""));
         if(index != -1)
@@ -42,7 +42,7 @@ public class PhoneDirectory
         return null;
     }
 
-    public DirectoryEntry removeEntry(String name)
+    public static DirectoryEntry removeEntry(String name)
     {
         int index = theDirectory.indexOf(new DirectoryEntry(name,""));
         if(index != -1)
@@ -52,15 +52,15 @@ public class PhoneDirectory
         return null;
     }
 
-    public void displayAllEntries()
+    public static void displayAllEntries()
     {
         for(int i = 0; i < theDirectory.size(); i++)
         {
-            System.out.println(theDirectory.get(i).getName() + ":" + theDirectory.get(i).getNumber);
+            System.out.println(theDirectory.get(i).getName() + ":" + theDirectory.get(i).getNumber());
         }
     }
 
-    public void fromFile(String fileName)
+    public static void fromFile(String fileName)
     {
         for (int i = 0; i < theDirectory.size(); i++){
             theDirectory.set(i,null);
@@ -85,7 +85,7 @@ public class PhoneDirectory
         }
     }
 
-    public void toFile(String fileName)
+    public static void toFile(String fileName)
     {
         File out = new File(fileName);
         PrintWriter pw = new PrintWriter(new FileOutputStream(out));
