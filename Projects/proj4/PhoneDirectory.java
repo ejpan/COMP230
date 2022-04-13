@@ -72,12 +72,38 @@ public class PhoneDirectory
 
     public void fromFile(String fileName)
     {
+        for (int i = 0; i < theDirectory.size(); i++){
+            theDirectory.set(i,null);
+        
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            String line;
+            while((line = reader.readLine())!= null)
+            {
+                String name = line;
+                if((line = reader.readLine())!= null){
+                    line = reader.readLine();
+                    String number = line;
+                    theDirectory.add(new DirectoryEntry(name, number));
+                }
+            }
+            reader.close();
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
 
+        }
     }
 
     public void toFile(String fileName)
     {
-        
+        File out = new File(fileName);
+        PrintWriter pw = new PrintWriter(new FileOutputStream(out));
+        for (int i = 0; i < theDirectory.size(); i++){
+            pw.println(theDirectory.get(i).getName());
+            pw.println(theDirectory.get(i).getNumber());
+        pw.close();
+        }
     }
 
 
