@@ -13,12 +13,12 @@ public class DirectoryEntry
 
     public String getName()
     {
-        return name;
+        return this.name;
     }
 
     public String getNumber()
     {
-        return number;
+        return this.number;
     }
 
     public void setName(String newName)

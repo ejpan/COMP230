@@ -7,31 +7,56 @@ public class DirectoryTester
         String name;
         String number;
         String fileName;
+        String response = "";
         Scanner kb = new Scanner(System.in);
-        System.out.println("What would you like to do?");
-        System.out.println("1. Load a previously saved phone directory from file");
-        System.out.println("2. Add or change a directory");
-        System.out.println("3. Remove an entry");
-        System.out.println("4. Search for an entry");
-        System.out.println("5. Display all entries");
-        System.out.println("6. Save the current phone directory to a file");
-        System.out.println("7. Quit the program");
-        String response = kb.nextLine();
-        switch (response)
+        PhoneDirectory phoneBook = new PhoneDirectory();
+        while(!response.equals("7"))
         {
-            case "1":
-                System.out.print("Enter the name of the file: ");
-                fileName = kb.nextLine();
-                PhoneDirectory.fromFile(fileName);
-            case "2":
-                System.out.print("Enter name for the entry: ");
-                name = kb.nextLine();
-                System.out.print("Enter the number for the entry: ");
-                number = kb.nextLine();
-                PhoneDirectory.addOrChangeEntry(name, number);
-            case "3":
-
-
+            System.out.println("What would you like to do?");
+            System.out.println("1. Load a previously saved phone directory from file");
+            System.out.println("2. Add or change a directory");
+            System.out.println("3. Remove an entry");
+            System.out.println("4. Search for an entry");
+            System.out.println("5. Display all entries");
+            System.out.println("6. Save the current phone directory to a file");
+            System.out.println("7. Quit the program");
+            response = kb.nextLine();
+            switch (response)
+            {
+                case "1":
+                    System.out.print("Enter the name of the file: ");
+                    fileName = kb.nextLine();
+                    break;
+                case "2":
+                    System.out.print("Enter name for the entry: ");
+                    name = kb.nextLine();
+                    System.out.print("Enter the number for the entry: ");
+                    number = kb.nextLine();
+                    phoneBook.addOrChangeEntry(name,number);
+                    break;
+                case "3":
+                    System.out.print("Enter name of the entry: ");
+                    name = kb.nextLine();
+                    phoneBook.removeEntry(name);
+                    break;
+                case "4":
+                    System.out.print("Enter name of the entry: ");
+                    name = kb.nextLine();
+                    System.out.println("The index of the entry is " + phoneBook.searchEntry(name));
+                    break;
+                case "5":
+                    phoneBook.displayAllEntries();
+                    break;
+                case "6":
+                    System.out.print("Enter the name of the file: ");
+                    fileName = kb.nextLine();
+                    phoneBook.toFile(fileName);
+                    break;
+                case "7":
+                    break;
+            }
+    
         }
+        kb.close();
     }
 }
