@@ -56,7 +56,7 @@ public class PhoneDirectory
     {
         for(int i = 0; i < theDirectory.size(); i++)
         {
-            System.out.println(theDirectory.get(i).getName() + ":" + theDirectory.get(i).getNumber);
+            System.out.println(theDirectory.get(i).getName() + ":" + theDirectory.get(i).getNumber());
         }
     }
 
