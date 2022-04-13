@@ -60,12 +60,12 @@ public class PhoneDirectory
         }
     }
 
-    public void fromFile(String fileName)
+    public static void fromFile(String fileName)
     {
 
     }
 
-    public void toFile(String fileName)
+    public static void toFile(String fileName)
     {
         
     }
