@@ -26,13 +26,12 @@ public class DirectoryTester
                 case "1":
                     System.out.print("Enter the name of the file: ");
                     fileName = kb.nextLine();
+                    phoneBook.fromFile(fileName);
                     break;
                 case "2":
-                    System.out.print("Enter name for the entry: ");
-                    name = kb.nextLine();
-                    System.out.print("Enter the number for the entry: ");
-                    number = kb.nextLine();
-                    phoneBook.addOrChangeEntry(name,number);
+                    System.out.print("Would you like to add or change an entry?\n1. Add Entry\n2. Change Entry\n");
+                    int state = kb.nextInt();
+                    phoneBook.addOrChangeEntry(state);
                     break;
                 case "3":
                     System.out.print("Enter name of the entry: ");

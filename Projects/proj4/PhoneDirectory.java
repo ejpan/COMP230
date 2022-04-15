@@ -15,27 +15,42 @@ public class PhoneDirectory
         return theDirectory;
     }
 
-    public String addOrChangeEntry(String name, String number)
+    public String addOrChangeEntry(int state)
     {
-        System.out.print("Would you like to add or change an entry?\n1. Add Entry\n2. Change Entry\n");
-        int ans = kb.nextInt();
-        if(ans == 1)
+        
+        if(state == 1)
         {
+            System.out.print("Enter name for the entry: ");
+            String name = kb.nextLine();
+            System.out.print("Enter the number for the entry: ");
+            String number = kb.nextLine();
             theDirectory.add(new DirectoryEntry(name,number));
         }
-        else
+        else if(state == 2)
         {
             System.out.print("Are you changing an entries name or number?\n1. Name\n2. Number\n");
-            ans = kb.nextInt();
+            int ans = kb.nextInt();
+            
             if(ans == 1)
             {
-                int index = theDirectory.indexOf(new DirectoryEntry(name,""));
-                theDirectory.get(index).setName(name);
+                System.out.println("Enter name for the entry you want to change: ");
+                String initial_name = kb.nextLine(); //This is not going through. program completely skips this line of code
+                System.out.println("Enter new name: ");
+                String new_name= kb.nextLine();
+                int index = theDirectory.indexOf(new DirectoryEntry(initial_name,""));
+                theDirectory.get(index).setName(new_name);
             }
-            else
+            else if (ans == 2)
             {
-                int index = theDirectory.indexOf(new DirectoryEntry("",number));
-                theDirectory.get(index).setNumber(number);
+                System.out.println("Enter number for the entry you want ot change: ");
+                String initial_number = kb.nextLine();
+                System.out.println("Enter new number: ");
+                String new_number = kb.nextLine();
+                int index = theDirectory.indexOf(new DirectoryEntry("",initial_number));
+                theDirectory.get(index).setNumber(new_number);
+            } else
+            {
+                System.out.println("Error");
             }
 
         }
@@ -55,6 +70,7 @@ public class PhoneDirectory
     public DirectoryEntry removeEntry(String name)
     {
         int index = theDirectory.indexOf(new DirectoryEntry(name,""));
+        System.out.println(index);
         if(index != -1)
         {
             return theDirectory.remove(index);
@@ -72,39 +88,43 @@ public class PhoneDirectory
 
     public void fromFile(String fileName)
     {
-        for (int i = 0; i < theDirectory.size(); i++){
-            theDirectory.set(i,null);
-        
+        theDirectory.clear();
+        String line;
         try{
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            String line;
             while((line = reader.readLine())!= null)
             {
                 String name = line;
-                if((line = reader.readLine())!= null){
-                    line = reader.readLine();
-                    String number = line;
-                    theDirectory.add(new DirectoryEntry(name, number));
+                line = reader.readLine();
+                String number = line;
+                theDirectory.add(new DirectoryEntry(name, number));
                 }
-            }
             reader.close();
         }catch(IOException e){
             System.out.println(e.getMessage());
         }
 
-        }
+        
     }
 
     public void toFile(String fileName)
     {
         File out = new File(fileName);
-        PrintWriter pw = new PrintWriter(new FileOutputStream(out));
-        for (int i = 0; i < theDirectory.size(); i++){
-            pw.println(theDirectory.get(i).getName());
-            pw.println(theDirectory.get(i).getNumber());
-        pw.close();
+        try{
+            PrintWriter pw = new PrintWriter(new FileOutputStream(out));
+            for (int i = 0; i < theDirectory.size(); i++){
+                pw.println(theDirectory.get(i).getName());
+                pw.println(theDirectory.get(i).getNumber());
+            }
+            pw.close();
+        }catch(FileNotFoundException e)
+        {
+            System.out.println(e.getMessage());
         }
+        
     }
-
-
+    
 }
+
+
+

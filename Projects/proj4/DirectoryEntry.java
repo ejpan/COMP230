@@ -7,8 +7,8 @@ public class DirectoryEntry
 
     public DirectoryEntry(String n1, String n2)
     {
-       name = n1;
-       number = n2;
+       this.name = n1;
+       this.number = n2;
     } 
 
     public String getName()
@@ -29,5 +29,19 @@ public class DirectoryEntry
     public void setNumber(String newNum)
     {
         number = newNum;
+    }
+
+    
+    @Override public boolean equals(Object obj)
+    {
+        DirectoryEntry directory_obj = (DirectoryEntry) obj;
+        if (obj == null){
+            return false;
+        }else if (directory_obj.name == this.name)
+        {
+            return true;
+        }else{
+            return false;
+        }
     }
 }
