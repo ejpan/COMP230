@@ -32,15 +32,37 @@ public class DirectoryEntry
     }
 
     
-    @Override public boolean equals(Object obj)
+    public boolean equals(Object obj)
     {
         DirectoryEntry directory_obj = (DirectoryEntry) obj;
-        if (obj == null){
-            return false;
-        }else if (directory_obj.name == this.name)
+        if(directory_obj.getName().equals(this.name) && directory_obj.getNumber().equals(this.number))
         {
             return true;
-        }else{
+        }
+        else if (directory_obj.getName().equals(""))
+        {
+            if(directory_obj.getNumber().equals(this.number))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if (directory_obj.getNumber().equals(""))
+        {
+            if(directory_obj.getName().equals(this.name))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
             return false;
         }
     }

@@ -30,6 +30,8 @@ public class PhoneDirectory
         {
             System.out.print("Are you changing an entries name or number?\n1. Name\n2. Number\n");
             int ans = kb.nextInt();
+            String empty_space = kb.nextLine();
+
             
             if(ans == 1)
             {
