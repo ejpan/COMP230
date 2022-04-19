@@ -31,7 +31,7 @@ public class DirectoryTester
                 case "2":
                     System.out.print("Would you like to add or change an entry?\n1. Add Entry\n2. Change Entry\n");
                     int state = kb.nextInt();
-                    String white_space = kb.nextLine();
+                    String white_space = kb.nextLine(); //gets rid of whitespace after getInt()
                     phoneBook.addOrChangeEntry(state);
                     break;
                 case "3":
