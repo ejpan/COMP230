@@ -32,10 +32,10 @@ public class DirectoryEntry
     }
 
     
-    public boolean equals(Object obj)
+    @Override public boolean equals(Object o)
     {
-        DirectoryEntry directory_obj = (DirectoryEntry) obj;
-        if(directory_obj.getName().equals(this.name) && directory_obj.getNumber().equals(this.number))
+        DirectoryEntry directory_obj = (DirectoryEntry)o;
+        if(directory_obj.getName().equals(this.name))
         {
             return true;
         }

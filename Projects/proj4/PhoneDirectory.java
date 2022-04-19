@@ -36,7 +36,7 @@ public class PhoneDirectory
             if(ans == 1)
             {
                 System.out.println("Enter name for the entry you want to change: ");
-                String initial_name = kb.nextLine(); //This is not going through. program completely skips this line of code
+                String initial_name = kb.nextLine(); 
                 System.out.println("Enter new name: ");
                 String new_name= kb.nextLine();
                 int index = theDirectory.indexOf(new DirectoryEntry(initial_name,""));
@@ -44,7 +44,7 @@ public class PhoneDirectory
             }
             else if (ans == 2)
             {
-                System.out.println("Enter number for the entry you want ot change: ");
+                System.out.println("Enter number for the entry you want to change: ");
                 String initial_number = kb.nextLine();
                 System.out.println("Enter new number: ");
                 String new_number = kb.nextLine();
@@ -72,7 +72,6 @@ public class PhoneDirectory
     public DirectoryEntry removeEntry(String name)
     {
         int index = theDirectory.indexOf(new DirectoryEntry(name,""));
-        System.out.println(index);
         if(index != -1)
         {
             return theDirectory.remove(index);

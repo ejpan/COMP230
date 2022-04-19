@@ -31,7 +31,7 @@ public class DirectoryTester
                 case "2":
                     System.out.print("Would you like to add or change an entry?\n1. Add Entry\n2. Change Entry\n");
                     int state = kb.nextInt();
-                    String white_space = kb.nextLine(); //gets rid of whitespace after getInt()
+                    String white_space = kb.nextLine();
                     phoneBook.addOrChangeEntry(state);
                     break;
                 case "3":
@@ -42,7 +42,8 @@ public class DirectoryTester
                 case "4":
                     System.out.print("Enter name of the entry: ");
                     name = kb.nextLine();
-                    System.out.println("The index of the entry is " + phoneBook.searchEntry(name));
+                    DirectoryEntry found = phoneBook.searchEntry(name);
+                    System.out.println("The entry matching " + name + " is " + found.getName() + ": " + found.getNumber());
                     break;
                 case "5":
                     phoneBook.displayAllEntries();
