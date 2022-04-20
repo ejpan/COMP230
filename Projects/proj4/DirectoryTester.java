@@ -20,6 +20,7 @@ public class DirectoryTester
             System.out.println("5. Display all entries");
             System.out.println("6. Save the current phone directory to a file");
             System.out.println("7. Quit the program");
+            System.out.print("Select option: ");
             response = kb.nextLine();
             System.out.println("");
             switch (response)
