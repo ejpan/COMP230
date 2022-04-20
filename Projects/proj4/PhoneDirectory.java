@@ -15,46 +15,33 @@ public class PhoneDirectory
         return theDirectory;
     }
 
-    public String addOrChangeEntry(int state)
+    public String addOrChangeEntry(String name, String number)
     {
-        
-        if(state == 1)
+        if(name.equals("") || number.equals(""))
         {
-            System.out.print("Enter name for the entry: ");
-            String name = kb.nextLine();
-            System.out.print("Enter the number for the entry: ");
-            String number = kb.nextLine();
-            theDirectory.add(new DirectoryEntry(name,number));
+            System.out.println("Name or number empty, invalid entry. Try again.");
+            return null;
         }
-        else if(state == 2)
+        DirectoryEntry de = new DirectoryEntry(name, number);
+        int index = theDirectory.indexOf(de);
+        if(index != -1)
         {
-            System.out.print("Are you changing an entries name or number?\n1. Name\n2. Number\n");
-            int ans = kb.nextInt();
-            String empty_space = kb.nextLine();
-
-            
-            if(ans == 1)
+            System.out.println("There already exits a entry with that name or number: " + theDirectory.get(index).getName() + ": " + theDirectory.get(index).getNumber());
+            System.out.print("Would you like to change the entry? (y for yes, n for no): ");
+            String ans = kb.nextLine();
+            if (ans.toLowerCase().equals("y"))
             {
-                System.out.println("Enter name for the entry you want to change: ");
-                String initial_name = kb.nextLine(); 
-                System.out.println("Enter new name: ");
-                String new_name= kb.nextLine();
-                int index = theDirectory.indexOf(new DirectoryEntry(initial_name,""));
-                theDirectory.get(index).setName(new_name);
+                return theDirectory.set(index, de).getNumber();
             }
-            else if (ans == 2)
+            else
             {
-                System.out.println("Enter number for the entry you want to change: ");
-                String initial_number = kb.nextLine();
-                System.out.println("Enter new number: ");
-                String new_number = kb.nextLine();
-                int index = theDirectory.indexOf(new DirectoryEntry("",initial_number));
-                theDirectory.get(index).setNumber(new_number);
-            } else
-            {
-                System.out.println("Error");
+                System.out.println("The entry was not changed.");
             }
-
+        }
+        else
+        {
+            theDirectory.add(de);
+            return null;
         }
         return null;
     }
@@ -66,6 +53,10 @@ public class PhoneDirectory
         {
             return theDirectory.get(index);
         }
+        else
+        {
+            System.out.println("The entry does not exist.");
+        }
         return null;
     }
 
@@ -76,14 +67,25 @@ public class PhoneDirectory
         {
             return theDirectory.remove(index);
         }
+        else
+        {
+            System.out.println("The entry does not exist.");
+        }
         return null;
     }
 
     public void displayAllEntries()
     {
-        for(int i = 0; i < theDirectory.size(); i++)
+        if(theDirectory.size() > 0)
         {
-            System.out.println(theDirectory.get(i).getName() + ": " + theDirectory.get(i).getNumber());
+            for(int i = 0; i < theDirectory.size(); i++)
+            {
+                System.out.println(theDirectory.get(i).getName() + ": " + theDirectory.get(i).getNumber());
+            }
+        }
+        else
+        {
+            System.out.println("The directory is empty.");
         }
     }
 
@@ -98,8 +100,17 @@ public class PhoneDirectory
                 String name = line;
                 line = reader.readLine();
                 String number = line;
-                theDirectory.add(new DirectoryEntry(name, number));
+                DirectoryEntry de = new DirectoryEntry(name, number);
+                int index = theDirectory.indexOf(de);
+                if(index == -1)
+                {
+                    theDirectory.add(de);
                 }
+                else
+                {
+                    theDirectory.set(index, de);
+                }
+            }
             reader.close();
         }catch(IOException e){
             System.out.println(e.getMessage());
@@ -111,9 +122,28 @@ public class PhoneDirectory
     public void toFile(String fileName)
     {
         File out = new File(fileName);
+        PrintWriter pw;
         try{
-            PrintWriter pw = new PrintWriter(new FileOutputStream(out));
-            for (int i = 0; i < theDirectory.size(); i++){
+            if(out.exists())
+            {
+                System.out.print("That file exists, would you like to append? (y for yes, n for no): ");
+                String ans = kb.nextLine();
+                if(ans.toLowerCase().equals("y"))
+                {
+                    pw = new PrintWriter(new FileOutputStream(out, true));
+                }
+                else
+                {
+                    pw = new PrintWriter(new FileOutputStream(out));
+
+                }
+            }
+            else
+            {
+                pw = new PrintWriter(new FileOutputStream(out));
+            }
+            for (int i = 0; i < theDirectory.size(); i++)
+            {
                 pw.println(theDirectory.get(i).getName());
                 pw.println(theDirectory.get(i).getNumber());
             }

@@ -21,37 +21,53 @@ public class DirectoryTester
             System.out.println("6. Save the current phone directory to a file");
             System.out.println("7. Quit the program");
             response = kb.nextLine();
+            System.out.println("");
             switch (response)
             {
                 case "1":
                     System.out.print("Enter the name of the file: ");
                     fileName = kb.nextLine();
                     phoneBook.fromFile(fileName);
+                    System.out.println("");
                     break;
                 case "2":
-                    System.out.print("Would you like to add or change an entry?\n1. Add Entry\n2. Change Entry\n");
-                    int state = kb.nextInt();
-                    String white_space = kb.nextLine();
-                    phoneBook.addOrChangeEntry(state);
+                    System.out.println("Enter intended name and number of entry. If an entry already exists you will be asked if you want to update it.");
+                    System.out.print("Enter the name of the entry: ");
+                    name = kb.nextLine();
+                    System.out.print("Enter the number of the entry: ");
+                    number = kb.nextLine();
+                    String old_num = phoneBook.addOrChangeEntry(name, number);
+                    System.out.println("");
                     break;
                 case "3":
                     System.out.print("Enter name of the entry: ");
                     name = kb.nextLine();
-                    phoneBook.removeEntry(name);
+                    DirectoryEntry de = phoneBook.removeEntry(name);
+                    if(de != null)
+                    {
+                        System.out.println("The entry " + de.getName() + ": " + de.getNumber() + " has been removed.");
+                    }
+                    System.out.println("");
                     break;
                 case "4":
                     System.out.print("Enter name of the entry: ");
                     name = kb.nextLine();
                     DirectoryEntry found = phoneBook.searchEntry(name);
-                    System.out.println("The entry matching " + name + " is " + found.getName() + ": " + found.getNumber());
+                    if(found != null)
+                    {
+                        System.out.println("The entry matching " + name + " is " + found.getName() + ": " + found.getNumber());
+                    }
+                    System.out.println("");
                     break;
                 case "5":
                     phoneBook.displayAllEntries();
+                    System.out.println("");
                     break;
                 case "6":
                     System.out.print("Enter the name of the file: ");
                     fileName = kb.nextLine();
                     phoneBook.toFile(fileName);
+                    System.out.println("");
                     break;
                 case "7":
                     break;
