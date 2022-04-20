@@ -32,7 +32,7 @@ public class DirectoryTester
                     System.out.println("");
                     break;
                 case "2":
-                    System.out.println("Enter intended name and number of entry. If an entry already exists you will be asked if you want to update it.");
+                    System.out.println("READ: Enter intended name and number of entry. If an entry already exists you will be asked if you want to update it.");
                     System.out.print("Enter the name of the entry: ");
                     name = kb.nextLine();
                     System.out.print("Enter the number of the entry: ");
