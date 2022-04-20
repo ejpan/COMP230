@@ -31,6 +31,7 @@ public class PhoneDirectory
             String ans = kb.nextLine();
             if (ans.toLowerCase().equals("y"))
             {
+                System.out.println("The entry has been updated.");
                 return theDirectory.set(index, de).getNumber();
             }
             else
