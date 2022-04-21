@@ -1,3 +1,9 @@
+/* Tester program that tests the methods in PhoneDiretory and the 
+oject creation of DirectoryEntry
+Eric Pan & Gabe Seidl
+April 20, 2022
+*/
+
 import java.util.*;
 import java.io.*;
 public class DirectoryTester 
