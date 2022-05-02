@@ -141,6 +141,20 @@ public class HashTableChain <K,V> implements KWHashMap<K,V>
             return null;
         }
 
+        public int size()
+        {
+            return numKeys;
+        }
+
+        public boolean isEmpty()
+        {
+            if (numKeys == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
 
         public int hashCode()
         {
