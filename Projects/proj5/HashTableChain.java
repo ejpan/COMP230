@@ -6,31 +6,40 @@ import com.apple.laf.resources.aqua;
 
 //Note:
 
-public class HashTableChain <K,V> implements KWHashMap<K,V> {
+public class HashTableChain <K,V> implements KWHashMap<K,V> 
+{
         
-        public static class Entry <K,V> {
+        public static class Entry<K,V> 
+        {
             private final K key;  //key
             private V value; //value
             
-            public Entry(K key, V value){
-                this.key = key;
-                this.value = value;
-            };
-            public K getKey(){
+            public Entry(K k, V v)
+            {
+                this.key = k;
+                this.value = v;
+            }
+
+            public K getKey()
+            {
                 return key;
             }
             
-            public V getvalue(){
+            public V getValue()
+            {
                 return value;
             }
 
-            public V setValue(V val){
+            public V setValue(V val)
+            {
                 V oldVal = value;
                 this.value = val;
                 return oldVal;
-            };
-            public String toString(){
-                return Key.toString() + "=" + value.toString();
+            }
+
+            public String toString()
+            {
+                return key.toString() + "=" + value.toString();
             }
 
 
@@ -67,7 +76,7 @@ public class HashTableChain <K,V> implements KWHashMap<K,V> {
             {
                 return null;
             }
-            for (Entry <K,V> nextItem: table[index])
+            for (Entry<K,V> nextItem: table[index])
             {
                 if (nextItem.getKey().equals(key)){
                     return nextItem.getValue();
@@ -101,10 +110,10 @@ public class HashTableChain <K,V> implements KWHashMap<K,V> {
             {
                 rehash();
             }
-            return null
+            return null;
         }
 
-        private V remove(Object key)
+        public V remove(Object key)
         {
             int index = key.hashCode() % table.length;
             if (index < 0)
@@ -133,7 +142,7 @@ public class HashTableChain <K,V> implements KWHashMap<K,V> {
         }
 
 
-        private void hashCode()
+        public int hashCode()
         {
             // uses ASCII values
             int sum = 0;
