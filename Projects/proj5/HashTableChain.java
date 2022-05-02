@@ -6,10 +6,10 @@ import com.apple.laf.resources.aqua;
 
 //Note:
 
-public class HashTableChain <K,V> implements KWHashMap(K,V) {
+public class HashTableChain <K,V> implements KWHashMap<K,V> {
         
         public static class Entry <K,V> {
-            private finalK key;  //key
+            private final K key;  //key
             private V value; //value
             
             public Entry(K key, V value){
@@ -50,7 +50,7 @@ public class HashTableChain <K,V> implements KWHashMap(K,V) {
         public HashTableChain(int cap)
         {
             table = new LinkedList[cap];
-            numkeys = 0;
+            numKeys = 0;
         }
 
         
