@@ -170,7 +170,7 @@ public class HashTableChain <K,V> implements KWHashMap<K,V>
 
         private void rehash()
         {
-            LinkedList oldTable = table;
+            LinkedList<Entry<K,V>>[] oldTable = table;
             int new_cap = CAPACITY * 2;
             boolean prime = false;
             while (prime == false){
@@ -189,12 +189,13 @@ public class HashTableChain <K,V> implements KWHashMap<K,V>
             }
             table = new LinkedList[new_cap];
             numKeys = 0;
-            for (int i = 0; i < oldTable.size(); i++)
+            for (int i = 0; i < oldTable.length; i++)
             {
-                for (int k = 0; k < oldTable.get(i).size(); k++)
+                for (int k = 0; k < oldTable[i].size(); k++)
                 {
-                    int index = k.hashCode() % table.length;
-                    table[index].put(k.getKey(), k.getValue());
+                    Entry<K,V> e = oldTable[i].get(k);
+                    int index = e.hashCode() % table.length;
+                    table[index].add(e);
                     numKeys++;
                 }
             }
