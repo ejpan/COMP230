@@ -15,24 +15,57 @@ public class Compress
             HashTableChain map = new HashTableChain();
             int counter = 0;
             String inputLine;
+            String prefix = "";
+            int nextChar;
             while((inputLine = br.readLine()) != null)
             {
-                for (int i = 0; i<inputLine.length(); i++){
+                for (int i = 0; i < inputLine.length(); i++){
                     char c = inputLine.charAt(i);
                     String s = Character.toString(c);
                     if(map.get(s) == null)
                     {
                         map.put(s,counter);
                         counter++;
-                        pw.println(s);
-                        pw.println(counter);
                     }
 
-                }
-                
-                
+                }  
             }
-            
+            br.close();
+            br = new BufferedReader(new FileReader(in));
+            while((nextChar = br.read()) != -1)
+            {
+                prefix += (char)nextChar;
+                if(map.get(prefix) == null)
+                {
+                    map.put(prefix, counter);
+                    counter++;
+                    pw.print(map.get(prefix.substring(0, prefix.length() - 1)));
+                    pw.print(" ");
+                    prefix = prefix.substring(prefix.length() - 1);
+                }
+            }
+            // br.close();
+            // br = new BufferedReader(new FileReader(in));
+            // prefix = "";
+            // while((nextChar = br.read()) != -1)
+            // {
+            //     prefix += (char)nextChar;
+            //     if(map.get(prefix) == null)
+            //     {
+            //         map.put(prefix, counter);
+            //         counter++;
+            //         int value = (int)map.get(prefix.substring(0, prefix.length() - 1));
+            //         pw.print(value);
+            //         pw.print(" ");
+            //         prefix = prefix.substring(prefix.length() - 1);
+            //     }
+            // }
+
+            if(map.get(prefix) != null)
+            {
+                pw.print(map.get(prefix));
+            }
+
             pw.close();
             br.close();
 
