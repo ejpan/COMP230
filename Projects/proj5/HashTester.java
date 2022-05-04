@@ -11,7 +11,8 @@ public class HashTester
         myHash.put(k2,v2);
         System.out.println(myHash.get(k));
         System.out.println(myHash.get(k2));
-        //myHash.rehash();
+        System.out.println(myHash.get(k));
+        System.out.println(myHash.get(k2));
         System.out.println(myHash.size());
         myHash.remove(k);
         System.out.println(myHash.get(k));
