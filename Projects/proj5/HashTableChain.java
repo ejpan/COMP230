@@ -2,7 +2,6 @@
 // import java.util.LinkedList;
 // import java.util.List;
 import java.util.*;
-import com.apple.laf.resources.aqua;
 
 //Note:
 
@@ -41,7 +40,6 @@ public class HashTableChain <K,V> implements KWHashMap<K,V>
             {
                 return key.toString() + "=" + value.toString();
             }
-
            
 
         }
@@ -63,12 +61,10 @@ public class HashTableChain <K,V> implements KWHashMap<K,V>
             numKeys = 0;
         }
 
-        
-
 
         public V get(Object key)
         {
-            int index = key.hashCode() % table.length;
+            int index = hashCode(key) % table.length;
             if (index < 0)
             {
                 index += table.length;
@@ -86,26 +82,19 @@ public class HashTableChain <K,V> implements KWHashMap<K,V>
             return null;
         }
 
-        public V put (K key, V value){
-            int index = key.hashCode() % table.length;
+        public V put (K key, V val)
+        {
+            Entry e = new Entry<K,V>(key, val);
+            int index = hashCode(key) % table.length;
             if (index < 0)
             {
                 index += table.length;
             }
             if (table[index] == null)
             {
-                table[index] = new LinkedList<>();
+                table[index] = new LinkedList<Entry<K,V>>();
             }
-            for (Entry<K,V> nextItem: table[index])
-            {
-                if (nextItem.getKey().equals(key))
-                {
-                    V oldVal = nextItem.getValue();
-                    nextItem.setValue(value);
-                    return oldVal;
-                }
-            }
-            table[index].addFirst(new Entry<>(key,value));
+            table[index].add(e);
             numKeys++;
             if (numKeys > (LOAD_THRESHOLD * table.length))
             {
@@ -116,7 +105,7 @@ public class HashTableChain <K,V> implements KWHashMap<K,V>
 
         public V remove(Object key)
         {
-            int index = key.hashCode() % table.length;
+            int index = hashCode(key) % table.length;
             if (index < 0)
             {
                 index += table.length;
@@ -130,7 +119,7 @@ public class HashTableChain <K,V> implements KWHashMap<K,V>
                 if (nextItem.getKey().equals(key))
                 {
                     V oldVal = nextItem.getValue();
-                    nextItem.remove();
+                    table[index].remove(nextItem);
                     numKeys--;
                 if (table[index].isEmpty())
                 {
@@ -140,6 +129,17 @@ public class HashTableChain <K,V> implements KWHashMap<K,V>
                 }
             }
             return null;
+        }
+
+        public static int hashCode(Object o)
+        {
+            String s = (String)o;
+            int sum = 0;
+            for(int i = 0; i < s.length(); i++)
+            {
+                sum += s.charAt(i);
+            }
+            return sum;
         }
 
         public int size()
@@ -156,36 +156,24 @@ public class HashTableChain <K,V> implements KWHashMap<K,V>
             return false;
         }
 
-
-        public int hashCode()
-        {
-            // uses ASCII values
-            int sum = 0;
-            for (int i = 0; i < this.length; i++){
-                sum += this.charAt(i);
-            }
-            return sum % table.length;
-        }
         
-
-
-        private void rehash()
+        public void rehash()
         {
-            LinkedList<Entry<K,V>>[] oldTable = table;
+            LinkedList<Entry<K,V>>[] oldTable = table.clone();
             int new_cap = CAPACITY * 2;
             boolean prime = false;
-            while (prime == false){
-                for (int i = 2; i < new_cap/2; i++){
-                    if (new_cap % i == 0)
+            while (!prime)
+            {
+                prime = true;
+                for (int i = 2; i < new_cap/2; i++)
+                {
+                    if(new_cap % i == 0)
                     {
-                        new_cap += 1;
                         prime = false;
                         break;
-                    }else
-                    {
-                        prime = true;
                     }
                 }
+                new_cap++;
 
             }
             table = new LinkedList[new_cap];
@@ -195,7 +183,7 @@ public class HashTableChain <K,V> implements KWHashMap<K,V>
                 for (int k = 0; k < oldTable[i].size(); k++)
                 {
                     Entry<K,V> e = oldTable[i].get(k);
-                    int index = e.hashCode() % table.length;
+                    int index = hashCode(e.getKey()) % table.length;
                     table[index].add(e);
                     numKeys++;
                 }

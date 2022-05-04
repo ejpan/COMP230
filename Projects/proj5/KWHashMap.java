@@ -1,5 +1,3 @@
-package proj5;
-
 public interface KWHashMap<K,V>
 {
     V get(Object key);
