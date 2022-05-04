@@ -10,63 +10,44 @@ public class Compress
             File in = new File(input_file);
             String output_file = input_file + ".zzz";
             File out = new File(output_file);
-            PrintWriter pw = new PrintWriter(new FileOutputStream(out));
+            //PrintWriter pw = new PrintWriter(new FileOutputStream(out));
             BufferedReader br = new BufferedReader(new FileReader(in));
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(out));
             HashTableChain map = new HashTableChain();
-            int counter = 0;
+            int counter = 32;
             String inputLine;
             String prefix = "";
             int nextChar;
-            while((inputLine = br.readLine()) != null)
+            
+            for (int c = 32; c <= 126; c++)
             {
-                for (int i = 0; i < inputLine.length(); i++){
-                    char c = inputLine.charAt(i);
-                    String s = Character.toString(c);
-                    if(map.get(s) == null)
-                    {
-                        map.put(s,counter);
-                        counter++;
-                    }
-
-                }  
-            }
-            br.close();
-            br = new BufferedReader(new FileReader(in));
+                map.put(Character.toString((char)c),c);
+                counter++;
+            } 
+            map.put("\n",1);
+            map.put("\r",2);
+            map.put("\t",3); 
+            
             while((nextChar = br.read()) != -1)
             {
                 prefix += (char)nextChar;
+                System.out.println(prefix);
                 if(map.get(prefix) == null)
                 {
                     map.put(prefix, counter);
                     counter++;
-                    pw.print(map.get(prefix.substring(0, prefix.length() - 1)));
-                    pw.print(" ");
+                    int num = (int)map.get(prefix.substring(0, prefix.length() - 1));
+                    os.writeInt(num);
                     prefix = prefix.substring(prefix.length() - 1);
                 }
             }
-            // br.close();
-            // br = new BufferedReader(new FileReader(in));
-            // prefix = "";
-            // while((nextChar = br.read()) != -1)
-            // {
-            //     prefix += (char)nextChar;
-            //     if(map.get(prefix) == null)
-            //     {
-            //         map.put(prefix, counter);
-            //         counter++;
-            //         int value = (int)map.get(prefix.substring(0, prefix.length() - 1));
-            //         pw.print(value);
-            //         pw.print(" ");
-            //         prefix = prefix.substring(prefix.length() - 1);
-            //     }
-            // }
-
+        
             if(map.get(prefix) != null)
             {
-                pw.print(map.get(prefix));
+                os.writeChar((int)map.get(prefix));
             }
 
-            pw.close();
+            os.close();
             br.close();
 
         }catch (IOException e){
