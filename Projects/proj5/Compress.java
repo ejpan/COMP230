@@ -6,7 +6,7 @@ public class Compress
     {
         try{
             // String input_file = args[0];
-            String input_file = "dict.txt";
+            String input_file = "speech.txt";
             File in = new File(input_file);
             String output_file = input_file + ".zzz";
             File out = new File(output_file);
@@ -31,7 +31,7 @@ public class Compress
             while((nextChar = br.read()) != -1)
             {
                 prefix += (char)nextChar;
-                System.out.println(prefix);
+                //System.out.println(prefix);
                 if(map.get(prefix) == null)
                 {
                     map.put(prefix, counter);

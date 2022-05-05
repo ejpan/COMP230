@@ -65,6 +65,7 @@ public class HashTableChain <K,V> implements KWHashMap<K,V>
         public V get(Object key)
         {
             int index = hashCode(key) % table.length;
+            //System.out.println(index);
             if (index < 0)
             {
                 index += table.length;
@@ -75,7 +76,7 @@ public class HashTableChain <K,V> implements KWHashMap<K,V>
             }
             for (Entry<K,V> nextItem: table[index])
             {
-                if (nextItem.getKey().equals(key)){
+                if (nextItem.getKey().equals(key)){ //should this be ==?
                     return nextItem.getValue();
                 }
             }
@@ -148,8 +149,12 @@ public class HashTableChain <K,V> implements KWHashMap<K,V>
 
         public static int hashCode(Object o)
         {
-            String s = (String)o;
             int sum = 0;
+            if(o instanceof Integer){
+                int num = (int) o;
+                return num;
+            }
+            String s = (String)o;
             for(int i = 0; i < s.length(); i++)
             {
                 sum += s.charAt(i);
