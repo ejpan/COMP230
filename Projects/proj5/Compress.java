@@ -1,5 +1,7 @@
 import java.util.*;
 import java.io.*;
+import java.nio.file.*;
+
 public class Compress
 {
     public static void main(String[] args)
@@ -39,16 +41,30 @@ public class Compress
                     int num = (int)map.get(prefix.substring(0, prefix.length() - 1));
                     os.writeInt(num);
                     prefix = prefix.substring(prefix.length() - 1);
+                    //System.out.println(prefix);
                 }
             }
         
             if(map.get(prefix) != null)
             {
-                os.writeChar((int)map.get(prefix));
+                os.writeInt((int)map.get(prefix));
             }
+            
+            PrintWriter pw = new PrintWriter(new File(output_file + ".log"));
+            pw.println("Compression of " + input_file);
+            Path original = Paths.get(input_file);
+            Path compressed = Paths.get(output_file);
+            long original_size = Files.size(original);
+            long compressed_size = Files.size(compressed);;
+            pw.println("Compressed from " + String.format("%,d kilobytes", original_size / 1024) + " to "+ String.format("%,d kilobytes", compressed_size / 1024));
+            pw.println("Compression took: ");
+            pw.println("The dictionary contains "+ counter + " total entries");
+            pw.println("The table was rehashed ");
 
             os.close();
             br.close();
+            pw.close();
+
 
         }catch (IOException e){
             System.out.println(e.getMessage());
