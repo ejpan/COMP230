@@ -32,7 +32,7 @@ public class binarytoascii {
                 //System.out.println(first);
                 while (true)
                 {
-                    first = map.get(first_int).toString();
+                    first = map.get(first_int).toString(); //when you comment this out, stuff prints out to file
                     int second_int = input_file.readInt();
                     if(map.get(second_int) != null)
                     {
