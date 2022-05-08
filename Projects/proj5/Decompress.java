@@ -1,5 +1,7 @@
 import java.util.*;
 import java.io.*;
+import java.nio.file.*;
+import java.time.Instant;
 
 public class Decompress {
     public static void main(String[] args)
@@ -18,6 +20,7 @@ public class Decompress {
                     System.out.println("Enter binary filename to decompress: ");
                     in = input.nextLine();
                 }
+                long startTime = Instant.now().toEpochMilli();
                 HashTableChain map = new HashTableChain();
                 int counter = 32;
                 String inputLine;
@@ -68,6 +71,14 @@ public class Decompress {
                     System.out.println("End of reading from file"); //change this to "" 
                     
                 }
+                long endTime = Instant.now().toEpochMilli();
+                long timeElapsed = endTime - startTime;
+
+                PrintWriter logPW = new PrintWriter(new File(in + "ASCII.txt" + ".log"));
+                logPW.println("Decompression for file " + in);
+                logPW.println("Decompression took " + (timeElapsed / 1000.0000) + " seconds");
+                logPW.println("The table was doubled " + map.rehash_count + " times");
+
                 System.out.println("Do you want to compress another file? (y for yes, n for no): ");
                 String keep_going = input.nextLine();
                 if (keep_going.toLowerCase().equals("n")){
@@ -78,7 +89,7 @@ public class Decompress {
                 input.close();
                 input_file.close();
                 pw.close();
-                
+                logPW.close();
             }catch(FileNotFoundException e)
             {
                 System.out.println(e.getMessage());
