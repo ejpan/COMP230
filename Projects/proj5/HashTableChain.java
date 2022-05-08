@@ -48,7 +48,7 @@ public class HashTableChain <K,V> implements KWHashMap<K,V>
         private int numKeys; //the counter
         private static final int CAPACITY = 101;
         private static final double LOAD_THRESHOLD = 3;
-
+        public static int rehash_count = 0;
 
         public HashTableChain() 
         {
@@ -100,6 +100,7 @@ public class HashTableChain <K,V> implements KWHashMap<K,V>
             if (numKeys > (LOAD_THRESHOLD * table.length))
             {
                 rehash();
+                rehash_count++;
             }
             return null;
         }
@@ -208,20 +209,6 @@ public class HashTableChain <K,V> implements KWHashMap<K,V>
             }
         }
 
-        public void printmap()
-        {
-            for (int i = 0; i < table.length; i++)
-            {
-                if (table[i] != null){
-                    for (int k = 0; k < table[i].size(); k++)
-                    {
-                        System.out.println(table[i].get(i));
-                    }
-
-                }
-                
-            }
-        }
 
 
 
