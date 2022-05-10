@@ -9,10 +9,11 @@ public class Decompress {
         int args_count = 0;
         boolean again = true;
         String in;
+        Scanner input = new Scanner(System.in);
         while(again)
         {
-            try {
-                Scanner input = new Scanner(System.in);
+            try 
+            {
                 if (args_count == 0){
                     in = args[0];
                     args_count++;
@@ -86,7 +87,6 @@ public class Decompress {
                 }else{
                     again = true;
                 }
-                input.close();
                 input_file.close();
                 pw.close();
                 logPW.close();
@@ -98,6 +98,7 @@ public class Decompress {
                 System.out.println(e.getMessage());
             }
         }
+        input.close();
         
         
     }
