@@ -10,10 +10,11 @@ public class Compress
         int args_count = 0;
         boolean again = true;
         String input_file;
+        Scanner input = new Scanner(System.in);
         while (again)
         {
-            try{
-                Scanner input = new Scanner(System.in);
+            try
+            {
                 if (args_count == 0){
                     input_file = args[0];
                     args_count++;
@@ -76,20 +77,25 @@ public class Compress
                 
                 System.out.println("Do you want to compress another file? (y for yes, n for no): ");
                 String keep_going = input.nextLine();
-                if (keep_going.toLowerCase().equals("n")){
+                if (keep_going.toLowerCase().equals("n"))
+                {
                     again = false;
-                }else{
+                }
+                else
+                {
                     again = true;
                 }
                 os.close();
                 br.close();
                 pw.close();
-                input.close();
-            }catch (IOException e){
+            }
+            catch (IOException e)
+            {
                 System.out.println(e.getMessage());
             }
             
         }
+        input.close();
         
         
         
